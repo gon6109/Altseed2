@@ -33,6 +33,7 @@ TEST(Font, Basic) {
 
     auto shader = instance->GetBuildinShader()->Create(Altseed::BuildinShaderType::FontUnlitPS);
     auto material = Altseed::MakeAsdShared<Altseed::Material>();
+    material->SetVector4F(u"weight", Altseed::Vector4F(0.5f + font->GetWeight() / 255, 0, 0, 0));
     material->SetShader(shader);
 
     std::vector<std::shared_ptr<Altseed::RenderedSprite>> sprites;

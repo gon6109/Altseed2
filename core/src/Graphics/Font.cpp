@@ -10,7 +10,7 @@ Glyph::Glyph(Vector2I textureSize, int32_t textureIndex, Vector2I position, Vect
     : textureSize_(textureSize), textureIndex_(textureIndex), position_(position), size_(size), offset_(offset), glyphWidth_(glyphWidth) {}
 
 Font::Font(std::shared_ptr<Resources>& resources, std::shared_ptr<StaticFile>& file, stbtt_fontinfo fontinfo, int32_t size, Color color)
-    : resources_(resources), file_(file), fontinfo_(fontinfo), size_(size), color_(color), textureSize_(Vector2I(2000, 2000)) {
+    : resources_(resources), file_(file), fontinfo_(fontinfo), size_(size), color_(color), textureSize_(Vector2I(2000, 2000)), weight_(0) {
     scale_ = stbtt_ScaleForPixelHeight(&fontinfo_, size_);
 
     stbtt_GetFontVMetrics(&fontinfo_, &ascent_, &descent_, &lineGap_);

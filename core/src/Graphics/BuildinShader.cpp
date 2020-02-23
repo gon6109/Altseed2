@@ -59,6 +59,7 @@ float4 main(PS_INPUT input) : SV_TARGET
 )";
 
 const char* FontUnlitPS = R"(
+float4 weight : register(w);
 Texture2D mainTex : register(t0);
 SamplerState mainSamp : register(s0);
 struct PS_INPUT
@@ -73,8 +74,8 @@ float4 main(PS_INPUT input) : SV_TARGET
 	float4 c;
 	c = mainTex.Sample(mainSamp, input.UV1);
 
-	c = lerp(float4(0, 0, 0, 0), float4(1, 1, 1, 1), (c - 0.5) * 255);
-	c = lerp(float4(0, 0, 0, 0), float4(1, 1, 1, 1), c + 0.5);
+	c = lerp(float4(0, 0, 0, 0), float4(1, 1, 1, 1), (c - w.r) * 255);
+	c = lerp(float4(0, 0, 0, 0), float4(1, 1, 1, 1), c + w.r);
 	if (c.r > 1)
 	{
 		return float4(1, 1, 1, 1);
