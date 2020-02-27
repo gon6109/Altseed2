@@ -10,12 +10,12 @@
 
 #include <memory>
 
-#include "Graphics/Color.h"
-#include "Graphics/Font.h"
 #include "Graphics/Camera.h"
+#include "Graphics/Color.h"
 #include "Graphics/CommandList.h"
-#include "Graphics/Renderer/Renderer.h"
+#include "Graphics/Font.h"
 #include "Graphics/Renderer/RenderedSprite.h"
+#include "Graphics/Renderer/Renderer.h"
 #include "Tool/Tool.h"
 
 TEST(Font, Basic) {
@@ -33,8 +33,14 @@ TEST(Font, Basic) {
 
     auto shader = instance->GetBuildinShader()->Create(Altseed::BuildinShaderType::FontUnlitPS);
     auto material = Altseed::MakeAsdShared<Altseed::Material>();
-    material->SetVector4F(u"weight", Altseed::Vector4F(0.5f + font->GetWeight() / 255, 0, 0, 0));
     material->SetShader(shader);
+    material->SetVector4F(
+            u"weight",
+            Altseed::Vector4F(
+                    0.5f + font->GetWeight() / 255.f,
+                    0.5f + font->GetWeight() / 255.f,
+                    0.5f + font->GetWeight() / 255.f,
+                    0.5f + font->GetWeight() / 255.f));
 
     std::vector<std::shared_ptr<Altseed::RenderedSprite>> sprites;
     const char16_t* text = u"こんにちは！ Hello World";
